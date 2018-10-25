@@ -104,7 +104,7 @@ xiaoweilu.cn
 ```
 
 ### Disclaimer
-This tool is courtesy of the free tier of ViewDNS (non-API) &mdash; please send queries responsibly.
+This tool is courtesy of the free tier of ViewDNS (non-API) which is also limited to showing 500 domains for a given query &mdash; please use responsibly.
 
 ---
 
