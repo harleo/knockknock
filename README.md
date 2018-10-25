@@ -17,6 +17,8 @@ optional arguments:
   -n NAME, --name NAME  name of the individual person or company to look up.
   -d, --display         print results to console.
   -s, --save            save results to JSON format.
+  -t [{json,txt}], --type [{json,txt}]
+                        set file type: 'json' or 'txt'. Default: 'json'.
 ```
 
 ### Example
@@ -100,6 +102,7 @@ test-acme.com
 thehfg.co.uk
 xiaoweilu.cn
 [:] Saving results to JSON file...
+[:] Saved to domains.json
 [:] Found 73 printable domains!
 ```
 
