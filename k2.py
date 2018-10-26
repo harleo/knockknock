@@ -1,4 +1,5 @@
-# KnockKnock (K2) v1.0 by https://github.com/harleo
+# KnockKnock (K2) v1.1 by https://github.com/harleo
+
 import os
 import ssl
 import pandas as pd
@@ -8,8 +9,8 @@ import json
 
 def check_ssl(func):
     def wrap(*args, **kwargs):
-        if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
-                getattr(ssl, '_create_unverified_context', None)):
+        if (not os.environ.get("PYTHONHTTPSVERIFY", "") and
+                getattr(ssl, "_create_unverified_context", None)):
             ssl._create_default_https_context = ssl._create_unverified_context
         return func(*args, **kwargs)
 
@@ -24,7 +25,7 @@ def query(name):
         return result[3][0]
     except Exception as e:
         print(
-            '[:] Couldn\'t send query, error: "%s"\n exiting...\n' % e
+            "[!] Couldn't send query, error: '%s' exiting...\n" % e
         )
         exit()
 
@@ -51,14 +52,14 @@ def main(args):
 def save_to_file(type, response):
     saved = False
     json_decoded = json.JSONDecoder().decode(response.to_json())
-    if type == 'json':
+    if type == "json":
         with open("domains.json", "w") as outfile:
             print("[:] Saving results to JSON file...")
             json.dump(json_decoded, outfile)
         saved = True
-    elif type == 'txt':
+    elif type == "txt":
         response_items_list = [
-            '%s\n' % v for k, v in json_decoded.items()
+            "%s\n" % v for k, v in json_decoded.items()
         ]
         with open("domains.txt", "w") as outfile:
             print("[:] Saving results to TXT file...")
@@ -67,7 +68,7 @@ def save_to_file(type, response):
     return saved
 
 
-def create_parser_for_user_arguments():
+def argument_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-n", "--name", type=str, required=True,
@@ -82,13 +83,13 @@ def create_parser_for_user_arguments():
         help="save results to JSON format."
     )
     parser.add_argument(
-        "-t", "--type", default='json', nargs='?',
-        choices=['json', 'txt'],
+        "-t", "--type", default="json", nargs="?",
+        choices=["json", "txt"],
         help="set file type: 'json' or 'txt'. Default: '%(default)s'."
     )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
-    args = create_parser_for_user_arguments()
+    args = argument_parser()
     main(args)
