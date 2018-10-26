@@ -41,22 +41,19 @@ def main(args):
             for url in iter_url:
                 print(url)
         if args.save:
-            saved = save_to_file(args.type, response)
-            if saved:
-                print("[:] Saved to domains.%s" % args.type)
+            save_to_file(args.type, response)
+            print("[:] Saved to domains.%s" % args.type)
         print("[:] Found %d printable domains." % (len(response) - 1))
     else:
         print("[!] No domains found, please try a different name.\n")
 
 
 def save_to_file(type, response):
-    saved = False
     json_decoded = json.JSONDecoder().decode(response.to_json())
     if type == "json":
         with open("domains.json", "w") as outfile:
             print("[:] Saving results to JSON file...")
             json.dump(json_decoded, outfile)
-        saved = True
     elif type == "txt":
         response_items_list = [
             "%s\n" % v for k, v in json_decoded.items()
@@ -64,8 +61,6 @@ def save_to_file(type, response):
         with open("domains.txt", "w") as outfile:
             print("[:] Saving results to TXT file...")
             outfile.writelines(response_items_list)
-        saved = True
-    return saved
 
 
 def argument_parser():
