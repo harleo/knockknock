@@ -3,7 +3,9 @@
 KnockKnock is a simple reverse whois lookup CLI which allows you to find domain names owned by an individual person or company, often used for Open Source Intelligence (OSINT) purposes.
 
 ### Requirements
-`pip3 install -r requirements.txt` 
+`pipenv install`
+
+If you do not have `pipenv` installed, first install it with `pip install pipenv`.
 
 ### Usage
 

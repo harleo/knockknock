@@ -1,5 +1,0 @@
-#Python3
-pandas==0.23.4
-lxml==4.2.5
-html5lib==1.0.1
-BeautifulSoup4==4.6.3
