@@ -1,4 +1,4 @@
-# KnockKnock (K2) v1.1 by https://github.com/harleo
+# KnockKnock (K2) v1.2 by https://github.com/harleo
 
 import argparse
 import json
