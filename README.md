@@ -5,7 +5,7 @@ KnockKnock is a simple reverse whois lookup CLI which allows you to find domain 
 ### Requirements
 `pipenv install`
 
-If you do not have `pipenv` installed, first install it with `pip install pipenv`.
+If you do not have `pipenv` installed, first install it with `pip3 install pipenv`.
 
 ### Usage
 

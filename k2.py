@@ -1,13 +1,13 @@
 # KnockKnock (K2) v1.2 by https://github.com/harleo
 
-import argparse
-import json
-import os
-import ssl
-
-import click
+# pylint: disable=no-value-for-parameter
 
 import pandas as pd
+import argparse
+import click
+import json
+import ssl
+import os
 
 
 def check_ssl(func):
