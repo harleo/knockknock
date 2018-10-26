@@ -74,9 +74,8 @@ def main(name, display, save, output_format):
             for url in iter_url:
                 print(url)
         if save:
-            saved = save_to_file(output_format, response)
-            if saved:
-                print("[:] Saved to domains.%s" % output_format)
+            save_to_file(output_format, response)
+            print("[:] Saved to domains.%s" % output_format)
         print("[:] Found %d printable domains." % (len(response) - 1))
     else:
         print("[!] No domains found, please try a different name.\n")
