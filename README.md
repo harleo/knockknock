@@ -5,20 +5,20 @@ KnockKnock is a simple reverse whois lookup CLI which allows you to find domain 
 ### Requirements
 `pipenv install`
 
-If you do not have `pipenv` installed, first install it with `pip install pipenv`.
+If you do not have `pipenv` installed, first install it with `pip3 install pipenv`.
 
 ### Usage
 
 ```console
-usage: k2.py [-h] -n NAME [-d] [-s] [-t [{json,txt}]]
+Usage: k2.py [OPTIONS]
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -n NAME, --name NAME  name of the individual person or company to look up.
-  -d, --display         display results to console.
-  -s, --save            save results to JSON format.
-  -t [{json,txt}], --type [{json,txt}]
-                        set file type: 'json' or 'txt'. Default: 'json'.
+Options:
+  -n, --name TEXT        name of the individual person or company to look up.
+                         [required]
+  -d, --display          display results to console.
+  -s, --save             save results to JSON format.
+  -t, --type [json|txt]  set file type: 'json' or 'txt'.  [default: json]
+  --help                 Show this message and exit.
 ```
 
 ### Example
