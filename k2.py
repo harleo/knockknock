@@ -60,8 +60,9 @@ def save_to_file(type, response):
     "--type",
     "output_format",
     default="json",
+    show_default=True,
     type=click.Choice(["json", "txt"]),
-    help="set file type: 'json' or 'txt'. Default: '%(default)s'.",
+    help="set file type: 'json' or 'txt'."
 )
 def main(name, display, save, output_format):
     print("[:] Sending query...")

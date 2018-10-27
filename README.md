@@ -17,8 +17,7 @@ Options:
                          [required]
   -d, --display          display results to console.
   -s, --save             save results to JSON format.
-  -t, --type [json|txt]  set file type: 'json' or 'txt'. Default:
-                         '%(default)s'.
+  -t, --type [json|txt]  set file type: 'json' or 'txt'.  [default: json]
   --help                 Show this message and exit.
 ```
 
