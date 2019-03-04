@@ -78,11 +78,11 @@ def main(name, display, save, output_format):
             for url in iter_url:
                 print(url)
         if save:
-            save_to_file(output_format, response)
+            save_to_file(output_format, response[1:])
             print(f"[:] Saved to domains.{output_format}")
         print(f"[:] Found {(len(response) - 1)} domains (maximum 500).")
     else:
-        print("[!] No domains found, please try a different name.\n")
+        print("[!] No domains found or parsing issue, please try again.\n")
 
 
 if __name__ == "__main__":
