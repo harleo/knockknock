@@ -22,7 +22,7 @@ Usage:
 ### Example
 
 ```console
-$ k2 -n google.com -p
+$ knockknock -n google.com -p
 
 [:] Sending query...
 028-hty.com
