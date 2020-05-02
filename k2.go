@@ -80,7 +80,7 @@ func parseTable(data string) ([][]string, []string) {
 }
 
 func main() {
-	namePtr := flag.String("n", "", "Registrant name or email of the individual person or company (Required)")
+	namePtr := flag.String("n", "", "Registrant name, email or domain name of the target (Required)")
 	printPtr := flag.Bool("p", false, "Print results")
 	flag.Parse()
 

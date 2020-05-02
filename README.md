@@ -1,5 +1,5 @@
 ## KnockKnock
-KnockKnock runs a simple reverse whois lookup which returns a list of domains owned by an individual person or company.
+KnockKnock runs a simple reverse whois lookup which returns a list of domains owned by people or companies.
 
 This tool is often used for reconnaissance or OSINT (Open Source Intelligence) purposes.
 
@@ -15,7 +15,7 @@ _This tool requires [golang](https://golang.org/)_
 ```console
 Usage:
   -n string
-        Registrant name or email of the individual person or company (Required)
+        Registrant name, email or domain name of the target (Required)
   -p    Print results
 ```
 
