@@ -1,53 +1,39 @@
-
 ## KnockKnock
-KnockKnock is a simple reverse whois lookup CLI which allows you to find domain names owned by an individual person or company, often used for Open Source Intelligence (OSINT) purposes.
+KnockKnock runs a simple reverse whois lookup which returns a list of domains owned by an individual person or company.
+
+This tool is often used for reconnaissance or OSINT (Open Source Intelligence) purposes.
+
+Please note that the results can also contain domains that are not owned by the particular target, whereas the target represents a whois guard.
 
 ### Installation
-Run `pipenv install`
+`go get -u github.com/harleo/knockknock`
 
-If you do not have `pipenv` installed, install it with `pip install pipenv`
-
-_[!] This tool requires Python 3.7 or above &mdash; use `pip3` and `python3` respectively if you have multiple version installed_
+_This tool requires [golang](https://golang.org/)_
 
 ### Options
 
 ```console
-Usage: k2.py [OPTIONS]
-
-Options:
-  -n, --name TEXT        Registrant name or email of the individual person or
-                         company to look up.  [required]
-  -d, --display          Display output to console.
-  -s, --save             Save output.
-  -t, --type [json|txt]  Set file type: 'json' or 'txt'.  [default: json]
-  -h, --help             Show this message and exit.
+Usage:
+  -n string
+        Registrant name or email of the individual person or company (Required)
+  -p    Print results
 ```
 
 ### Example
 
 ```console
-python3 k2.py -n acme.com -d
+$ k2 -n google.com -p
 
-KnockKnock v1.3
 [:] Sending query...
-[:] Parsing response...
-acme.com.cn
-acme.com.hk
-acme.com
-acme.hk
-acme.ua
-[...]
-suministrosacme.com
-sweatersandbeyond.com
-test-acme.com
-thehfg.co.uk
-xiaoweilu.cn
-[:] Found 74 domains (maximum 500).
+028-hty.com
+0512zc.cn
+--- snip ---
+[:] Writing 1000 domain(s) to file...
 ```
 
 ### Disclaimer
-This tool is courtesy of the free tier (non-API) of ViewDNS (https://viewdns.info) which is also limited to showing 500 domains for a given query &mdash; please use responsibly.
+This tool must use an external API such as ReverseWhois (which is subject to rate limiting and a maximum of 1000 domains per query) to retrieve relevant data.
 
 ---
 
-&copy; 2019 Leonid Hartmann
+&copy; 2020 Leonid Hartmann
