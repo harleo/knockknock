@@ -1,6 +1,6 @@
 /*
 k2: Reverse whois lookup
-by https://github.com/harleo/
+by github.com/harleo — MIT License
 */
 
 package main
@@ -109,4 +109,6 @@ func main() {
 	} else {
 		fmt.Println("[!] No domains found")
 	}
+
+	fmt.Println("[:] Done.")
 }

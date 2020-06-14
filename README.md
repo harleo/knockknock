@@ -6,9 +6,12 @@ This tool is often used for reconnaissance or OSINT (Open Source Intelligence) p
 Please note that the results can also contain domains that are not owned by the particular target, whereas the target represents a whois guard.
 
 ### Installation
-`go get -u github.com/harleo/knockknock`
+`go get -v github.com/harleo/knockknock`
 
 _This tool requires [golang](https://golang.org/)_
+
+### Update
+`go get -u github.com/harleo/knockknock`
 
 ### Options
 
@@ -29,6 +32,7 @@ $ knockknock -n google.com -p
 0512zc.cn
 --- snip ---
 [:] Writing 1000 domain(s) to file...
+[:] Done.
 ```
 
 ### Disclaimer
@@ -36,4 +40,4 @@ This tool must use an external API such as ReverseWhois (which is subject to rat
 
 ---
 
-&copy; 2020 Leonid Hartmann
+&copy; 2020 github.com/harleo &mdash; MIT License
