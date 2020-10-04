@@ -1,4 +1,8 @@
 ## KnockKnock
+
+[![MIT License](https://img.shields.io/github/license/harleo/asnip?label=License&style=flat-square)](https://opensource.org/licenses/MIT)
+[![Follow on Twitter](https://img.shields.io/twitter/follow/_harleo?color=00acee&label=Follow%20%40_harleo&style=flat-square)](https://twitter.com/_harleo)
+
 KnockKnock runs a simple reverse whois lookup which returns a list of domains owned by people or companies.
 
 This tool is often used for reconnaissance or OSINT (Open Source Intelligence) purposes.
@@ -40,4 +44,4 @@ This tool must use an external API such as ReverseWhois (which is subject to rat
 
 ---
 
-&copy; 2020 github.com/harleo &mdash; MIT License
+&copy; github.com/harleo
