@@ -15,7 +15,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/puerkitobio/goquery"
+	"github.com/PuerkitoBio/goquery"
 )
 
 type sliceVal []string
