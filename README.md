@@ -10,12 +10,9 @@ This tool is often used for reconnaissance or OSINT (Open Source Intelligence) p
 Please note that the results can also contain domains that are not owned by the particular target, whereas the target represents a whois guard.
 
 ### Installation
-`go get -v github.com/harleo/knockknock`
+`go install github.com/harleo/asnip@latest`
 
 _This tool requires [golang](https://golang.org/)_
-
-### Update
-`go get -u github.com/harleo/knockknock`
 
 ### Options
 
