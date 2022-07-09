@@ -32,12 +32,12 @@ $ knockknock -n google.com -p
 028-hty.com
 0512zc.cn
 --- snip ---
-[:] Writing 1000 domain(s) to file...
+[:] Writing 500 domain(s) to file...
 [:] Done.
 ```
 
 ### Disclaimer
-This tool must use an external API such as ReverseWhois (which is subject to rate limiting and a maximum of 1000 domains per query) to retrieve relevant data.
+This tool must use an external API such as ViewDNS.info (which is subject to rate limiting and a maximum of 500 domains per query) to retrieve relevant data.
 
 ---
 

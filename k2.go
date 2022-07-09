@@ -7,31 +7,25 @@ package main
 
 import (
 	"bufio"
+	"log"
+	"os"
 	"flag"
 	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
-	"os"
-	"strings"
-
 	"github.com/PuerkitoBio/goquery"
 )
 
-type sliceVal []string
-
-func (s sliceVal) String() string {
-	var str string
-	for _, i := range s {
-		str += fmt.Sprintf("%s\n", i)
-	}
-	return str
+type registrarInfo struct {
+	name string
+	creation_date  string
+	registrar string
 }
+
+var whoIs []registrarInfo
 
 func writeLines(lines []string, path string) error {
 	file, err := os.Create(path)
 	if err != nil {
-		log.Fatalf("[!] Couldn't create file: %s\n", err.Error())
+		log.Fatalf("[!] Couldn't create domains.txt file: %s\n", err.Error())
 	}
 	defer file.Close()
 
@@ -40,43 +34,6 @@ func writeLines(lines []string, path string) error {
 		fmt.Fprintln(w, line)
 	}
 	return w.Flush()
-}
-
-func httpRequest(URI string) string {
-	response, errGet := http.Get(URI)
-	if errGet != nil {
-		log.Fatalf("[!] Error sending request: %s\n", errGet.Error())
-	}
-
-	responseText, errRead := ioutil.ReadAll(response.Body)
-	if errRead != nil {
-		log.Fatalf("[!] Error reading response: %s\n", errRead.Error())
-	}
-
-	defer response.Body.Close()
-	return string(responseText)
-}
-
-func parseTable(data string) ([][]string, []string) {
-	var rows [][]string
-	var row []string
-
-	doc, err := goquery.NewDocumentFromReader(strings.NewReader(data))
-	if err != nil {
-		log.Fatalf("[!] Parsing issue: %s\n", err.Error())
-	}
-
-	doc.Find("table").Each(func(index int, tablehtml *goquery.Selection) {
-		tablehtml.Find("tr").Each(func(indextr int, rowhtml *goquery.Selection) {
-			rowhtml.Find("td").Each(func(indexth int, tablecell *goquery.Selection) {
-				row = append(row, tablecell.Text())
-			})
-			rows = append(rows, row)
-			row = nil
-		})
-	})
-
-	return rows, row
 }
 
 func main() {
@@ -90,22 +47,38 @@ func main() {
 	}
 
 	fmt.Println("[:] Sending query...")
-	request := httpRequest(fmt.Sprintf("https://www.reversewhois.io/?searchterm=%s", *namePtr))
-	rows, _ := parseTable(request)
+	
+	doc, err := goquery.NewDocument(fmt.Sprintf("https://viewdns.info/reversewhois/?q=%s", *namePtr))
+	if err != nil {
+		log.Fatalf("[!] Couldn't send query request: %s\n", err.Error())
+	}
 
-	var domains []string
+	doc.Find("html body font table#null tbody tr td font table tbody tr").Each(func(_ int, tr *goquery.Selection) {
+		e := registrarInfo{}
+		tr.Find("td").Each(func(ix int, td *goquery.Selection) {
+			switch ix {
+			case 0:
+				e.name = td.Text()
+			case 1:
+				e.creation_date = td.Text()
+			case 2:
+				e.registrar = td.Text()
+			}
+		})
+		whoIs = append(whoIs, e)
+	})
 
-	if len(rows) > 0 {
-		for _, domain := range rows[1:] {
-			domains = append(domains, domain[1])
+	if len(whoIs) > 0 {
+		var domainNames[] string
+		for _, domain := range whoIs[1:] {
+			domainNames = append(domainNames, domain.name)
+
+			if *printPtr {
+				fmt.Printf("%s | %s | %s\n", domain.name, domain.creation_date, domain.registrar)
+			}
 		}
-
-		if *printPtr {
-			fmt.Print(sliceVal(domains))
-		}
-
-		fmt.Printf("[:] Writing %d domain(s) to file...\n", len(domains))
-		writeLines(domains, "domains.txt")
+		fmt.Sprintf("[:] Writing %d domain(s) to file...\n", len(domainNames))
+		writeLines(domainNames, "domains.txt")
 	} else {
 		fmt.Println("[!] No domains found")
 	}
