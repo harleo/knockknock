@@ -29,15 +29,15 @@ Usage:
 $ knockknock -n google.com -p
 
 [:] Sending query...
-028-hty.com
-0512zc.cn
+028-hty.com | 2016-05-20 | DROPCATCH.COM 883 LLC
+04plan.com | 2020-04-04 | GABIA, INC.
 --- snip ---
 [:] Writing 500 domain(s) to file...
 [:] Done.
 ```
 
 ### Disclaimer
-This tool must use an external API such as ViewDNS.info (which is subject to rate limiting and a maximum of 500 domains per query) to retrieve relevant data.
+This tool must use an external API such as ViewDNS.info (which is subject to rate limiting and a maximum of 500 domains per query) to retrieve relevant data. Also note that the API uses Cloudflare, queries from cloud IPs may be blocked and require captcha verification whereas residential IPs are able to pass.
 
 ---
 
