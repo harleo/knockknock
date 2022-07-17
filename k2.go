@@ -11,6 +11,7 @@ import (
 	"os"
 	"flag"
 	"fmt"
+	"strings"
 	"github.com/PuerkitoBio/goquery"
 )
 
@@ -53,6 +54,14 @@ func main() {
 		log.Fatalf("[!] Couldn't send query request: %s\n", err.Error())
 	}
 
+	// API uses Cloudflare, most likely all cloud IPs require captcha verification whereas residential IPs are able to pass
+	doc.Find("html").Each(func(_ int, body *goquery.Selection) {
+		if strings.Contains(body.Text(), "Cloudflare Ray ID") {
+			fmt.Println("[!] Query was blocked by Cloudflare captcha, try from a different IP.")
+			os.Exit(0)
+		}
+	})
+
 	doc.Find("html body font table#null tbody tr td font table tbody tr").Each(func(_ int, tr *goquery.Selection) {
 		e := registrarInfo{}
 		tr.Find("td").Each(func(ix int, td *goquery.Selection) {
@@ -77,7 +86,7 @@ func main() {
 				fmt.Printf("%s | %s | %s\n", domain.name, domain.creation_date, domain.registrar)
 			}
 		}
-		fmt.Sprintf("[:] Writing %d domain(s) to file...\n", len(domainNames))
+		fmt.Printf("[:] Writing %d domain(s) to file...\n", len(domainNames))
 		writeLines(domainNames, "domains.txt")
 	} else {
 		fmt.Println("[!] No domains found")
