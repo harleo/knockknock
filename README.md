@@ -1,7 +1,6 @@
 ## KnockKnock
 
 [![MIT License](https://img.shields.io/github/license/harleo/asnip?label=License&style=flat-square)](https://opensource.org/licenses/MIT)
-[![Follow on Twitter](https://img.shields.io/twitter/follow/_harleo?color=00acee&label=Follow%20%40_harleo&style=flat-square)](https://twitter.com/_harleo)
 
 KnockKnock runs a simple reverse whois lookup which returns a list of domains owned by people or companies.
 
@@ -20,19 +19,21 @@ _This tool requires [golang](https://golang.org/)_
 Usage:
   -n string
         Registrant name, email or domain name of the target (Required)
+  -o string
+        Output file to write results to (default "domains.txt")
   -p    Print results
 ```
 
 ### Example
 
 ```console
-$ knockknock -n google.com -p
+$ knockknock -n google.com -o google.txt -p
 
 [:] Sending query...
 028-hty.com | 2016-05-20 | DROPCATCH.COM 883 LLC
 04plan.com | 2020-04-04 | GABIA, INC.
 --- snip ---
-[:] Writing 500 domain(s) to file...
+[:] Writing 500 domain(s) to file google.txt...
 [:] Done.
 ```
 
