@@ -27,7 +27,7 @@ var whoIs []registrarInfo
 func writeLines(lines []string, path string) error {
 	file, err := os.Create(path)
 	if err != nil {
-		log.Fatalf("[!] Couldn't create domains.txt file: %s\n", err.Error())
+		log.Fatalf("[!] Couldn't create %s file: %s\n", path, err.Error())
 	}
 	defer file.Close()
 
