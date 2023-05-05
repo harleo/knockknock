@@ -7,18 +7,19 @@ package main
 
 import (
 	"bufio"
-	"log"
-	"os"
 	"flag"
 	"fmt"
+	"log"
+	"os"
 	"strings"
+
 	"github.com/PuerkitoBio/goquery"
 )
 
 type registrarInfo struct {
-	name string
-	creation_date  string
-	registrar string
+	name          string
+	creation_date string
+	registrar     string
 }
 
 var whoIs []registrarInfo
@@ -26,7 +27,7 @@ var whoIs []registrarInfo
 func writeLines(lines []string, path string) error {
 	file, err := os.Create(path)
 	if err != nil {
-		log.Fatalf("[!] Couldn't create domains.txt file: %s\n", err.Error())
+		log.Fatalf("[!] Couldn't create %s file: %s\n", path, err.Error())
 	}
 	defer file.Close()
 
@@ -40,6 +41,8 @@ func writeLines(lines []string, path string) error {
 func main() {
 	namePtr := flag.String("n", "", "Registrant name, email or domain name of the target (Required)")
 	printPtr := flag.Bool("p", false, "Print results")
+	outputPtr := flag.String("o", "domains.txt", "Output file to write results to")
+
 	flag.Parse()
 
 	if *namePtr == "" {
@@ -48,7 +51,7 @@ func main() {
 	}
 
 	fmt.Println("[:] Sending query...")
-	
+
 	doc, err := goquery.NewDocument(fmt.Sprintf("https://viewdns.info/reversewhois/?q=%s", *namePtr))
 	if err != nil {
 		log.Fatalf("[!] Couldn't send query request: %s\n", err.Error())
@@ -78,7 +81,7 @@ func main() {
 	})
 
 	if len(whoIs) > 0 {
-		var domainNames[] string
+		var domainNames []string
 		for _, domain := range whoIs[1:] {
 			domainNames = append(domainNames, domain.name)
 
@@ -86,8 +89,8 @@ func main() {
 				fmt.Printf("%s | %s | %s\n", domain.name, domain.creation_date, domain.registrar)
 			}
 		}
-		fmt.Printf("[:] Writing %d domain(s) to file...\n", len(domainNames))
-		writeLines(domainNames, "domains.txt")
+		fmt.Printf("[:] Writing %d domain(s) to file %s...\n", len(domainNames), *outputPtr)
+		writeLines(domainNames, *outputPtr)
 	} else {
 		fmt.Println("[!] No domains found")
 	}
